@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return true;
             case R.id.app_bar_hardware:
                 //Hardware functionality
-                Toast.makeText(getApplicationContext(), "Hardware", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), HardwareActivity.class));
                 return true;
             case R.id.app_bar_settings:
                 //Settings (fragment?);
