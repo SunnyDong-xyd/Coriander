@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
+        android:id="@+id/app_bar_main"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="Calendar"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/app_bar_hardware"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_watch_24"
         android:title="Hardware"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/app_bar_search"
-        android:enabled="true"
-        android:title="Search"
-        android:icon="@drawable/ic_baseline_search_24"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/app_bar_settings"
         android:enabled="true"
         android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>
