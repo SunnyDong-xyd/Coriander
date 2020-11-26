@@ -14,6 +14,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    protected Menu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -44,7 +47,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.app_bar_main:
                 //Return to main menu
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //Clear
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 return true;
             case R.id.app_bar_hardware:
                 //Hardware functionality
