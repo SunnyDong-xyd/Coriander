@@ -15,5 +15,11 @@
         android:name="com.example.coriander.HardwareFragment"
         android:label="hardware_fragment"
         tools:layout="@layout/hardware_fragment" />
-    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" /><action android:id="@+id/action_global_hardwareFragment" app:destination="@id/hardwareFragment"/>
+    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
+    <action android:id="@+id/action_global_hardwareFragment" app:destination="@id/hardwareFragment" />
+    <fragment
+        android:id="@+id/panicFragment"
+        android:name="com.example.coriander.PanicFragment"
+        android:label="panic_fragment"
+        tools:layout="@layout/panic_fragment" /><action android:id="@+id/action_global_panicFragment" app:destination="@id/panicFragment"/>
 </navigation>

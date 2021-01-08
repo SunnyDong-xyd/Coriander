@@ -33,7 +33,7 @@ public class BaseActivity extends AppCompatActivity implements OnViewCreated {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(), PanicActivity.class));
+                Navigation.findNavController(currentView).navigate(R.id.action_global_panicFragment);
             }
         });
     }
