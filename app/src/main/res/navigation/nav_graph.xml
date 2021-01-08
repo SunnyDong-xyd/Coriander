@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.coriander.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" />
+    <fragment
+        android:id="@+id/hardwareFragment"
+        android:name="com.example.coriander.HardwareFragment"
+        android:label="hardware_fragment"
+        tools:layout="@layout/hardware_fragment" />
+    <action android:id="@+id/action_global_mainFragment" app:destination="@id/mainFragment" />
+    <action android:id="@+id/action_global_hardwareFragment" app:destination="@id/hardwareFragment" />
+    <fragment
+        android:id="@+id/panicFragment"
+        android:name="com.example.coriander.PanicFragment"
+        android:label="panic_fragment"
+        tools:layout="@layout/panic_fragment" /><action android:id="@+id/action_global_panicFragment" app:destination="@id/panicFragment"/>
+</navigation>
