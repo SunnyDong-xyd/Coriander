@@ -2,6 +2,9 @@ package com.example.coriander;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +15,15 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements OnViewCreated {
+
+    private View currentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        loadBaseElements();
     }
 
     protected void loadBaseElements(){
@@ -27,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PanicActivity.class));
+                //startActivity(new Intent(getApplicationContext(), PanicActivity.class));
             }
         });
     }
@@ -43,12 +49,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.app_bar_main:
-                //Return to main menu
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Navigation.findNavController(currentView).navigate(R.id.action_global_mainFragment);
                 return true;
             case R.id.app_bar_hardware:
-                //Hardware functionality
-                startActivity(new Intent(getApplicationContext(), HardwareActivity.class));
+                Navigation.findNavController(currentView).navigate(R.id.action_global_hardwareFragment);
                 return true;
             case R.id.app_bar_settings:
                 //Settings (fragment?);
@@ -61,6 +65,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onViewSelected (View view){
+        currentView = view;
     }
 
 }
