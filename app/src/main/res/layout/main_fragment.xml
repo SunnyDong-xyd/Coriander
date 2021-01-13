@@ -44,7 +44,7 @@
         android:layout_width="342dp"
         android:layout_height="89dp"
         android:layout_marginBottom="20dp"
-        android:text="Hello! I sure hope everything is good in the hood!"
+        android:text="Hello! I sure hope everything is good in the hood!!"
         android:textAlignment="viewStart"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/calendarView"
