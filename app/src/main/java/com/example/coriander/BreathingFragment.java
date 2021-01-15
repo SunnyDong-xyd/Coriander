@@ -15,8 +15,6 @@ import android.view.ViewGroup;
 
 public class BreathingFragment extends Fragment {
 
-    private HardwareViewModel mViewModel;
-
     OnViewCreated createdListener;
 
     // TODO: Rename and change types and number of parameters
@@ -35,7 +33,7 @@ public class BreathingFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HardwareViewModel.class);
+        //mViewModel = new ViewModelProvider(this).get(BreathingViewModel.class);
         // TODO: Use the ViewModel
     }
 

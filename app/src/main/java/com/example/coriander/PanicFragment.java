@@ -33,12 +33,11 @@ public class PanicFragment extends Fragment {
         View view = inflater.inflate(R.layout.panic_fragment, container, false);
         createdListener.onViewSelected(view);
 
-
-        Button btn = (Button) getView().findViewById(R.id.buttonbreathing);
+        Button btn = (Button) view.findViewById(R.id.buttonbreathing);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_panicFragment_to_breathingFragment);
+                Navigation.findNavController(view).navigate(R.id.action_panicFragment_to_breathingFragment);
             }
         });
 
