@@ -21,5 +21,14 @@
         android:id="@+id/panicFragment"
         android:name="com.example.coriander.PanicFragment"
         android:label="panic_fragment"
-        tools:layout="@layout/panic_fragment" /><action android:id="@+id/action_global_panicFragment" app:destination="@id/panicFragment"/>
+        tools:layout="@layout/panic_fragment" >
+        <action
+            android:id="@+id/action_panicFragment_to_breathingFragment"
+            app:destination="@id/breathingFragment" />
+    </fragment><action android:id="@+id/action_global_panicFragment" app:destination="@id/panicFragment"/>
+    <fragment
+        android:id="@+id/breathingFragment"
+        android:name="com.example.coriander.BreathingFragment"
+        android:label="fragment_breathing"
+        tools:layout="@layout/fragment_breathing" />
 </navigation>
