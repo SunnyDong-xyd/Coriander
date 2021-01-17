@@ -33,6 +33,7 @@ public class PanicFragment extends Fragment {
         View view = inflater.inflate(R.layout.panic_fragment, container, false);
         createdListener.onViewSelected(view);
 
+        //breathing button
         Button btn = (Button) view.findViewById(R.id.buttonbreathing);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,44 @@ public class PanicFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_panicFragment_to_breathingFragment);
             }
         });
+
+        //contact button
+        Button contactbtn = (Button) view.findViewById(R.id.buttoncall);
+        contactbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_panicFragment_to_contactFragment);
+            }
+        });
+
+        //grounding exercises button
+        Button groundbtn = (Button) view.findViewById(R.id.buttongrounding);
+        groundbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_panicFragment_to_groundingFragment2);
+            }
+        });
+
+        //physical exercises button
+        Button physicalbtn = (Button) view.findViewById(R.id.buttonphysical);
+        physicalbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_panicFragment_to_physicalFragment2);
+            }
+        });
+
+        //calming facts button
+        Button calmingbtn = (Button) view.findViewById(R.id.buttoncalming);
+        calmingbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_panicFragment_to_calmingFragment2);
+            }
+        });
+
+
 
 
         return view;

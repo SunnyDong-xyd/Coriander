@@ -25,10 +25,42 @@
         <action
             android:id="@+id/action_panicFragment_to_breathingFragment"
             app:destination="@id/breathingFragment" />
+        <action
+            android:id="@+id/action_panicFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+        <action
+            android:id="@+id/action_panicFragment_to_calmingFragment2"
+            app:destination="@id/calmingFragment" />
+        <action
+            android:id="@+id/action_panicFragment_to_groundingFragment2"
+            app:destination="@id/groundingFragment" />
+        <action
+            android:id="@+id/action_panicFragment_to_physicalFragment2"
+            app:destination="@id/physicalFragment" />
     </fragment><action android:id="@+id/action_global_panicFragment" app:destination="@id/panicFragment"/>
     <fragment
         android:id="@+id/breathingFragment"
         android:name="com.example.coriander.BreathingFragment"
         android:label="fragment_breathing"
         tools:layout="@layout/fragment_breathing" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.coriander.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/calmingFragment"
+        android:name="com.example.coriander.CalmingFragment"
+        android:label="fragment_calming"
+        tools:layout="@layout/fragment_calming" />
+    <fragment
+        android:id="@+id/groundingFragment"
+        android:name="com.example.coriander.GroundingFragment"
+        android:label="fragment_grounding"
+        tools:layout="@layout/fragment_grounding" />
+    <fragment
+        android:id="@+id/physicalFragment"
+        android:name="com.example.coriander.PhysicalFragment"
+        android:label="fragment_physical"
+        tools:layout="@layout/fragment_physical" />
 </navigation>
