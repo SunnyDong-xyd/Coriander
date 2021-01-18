@@ -42,7 +42,20 @@
         android:id="@+id/breathingFragment"
         android:name="com.example.coriander.BreathingFragment"
         android:label="fragment_breathing"
-        tools:layout="@layout/fragment_breathing" />
+        tools:layout="@layout/fragment_breathing" >
+        <action
+            android:id="@+id/action_breathingFragment_to_bunnyFragment"
+            app:destination="@id/bunnyFragment" />
+        <action
+            android:id="@+id/action_breathingFragment_to_candleFragment"
+            app:destination="@id/candleFragment" />
+        <action
+            android:id="@+id/action_breathingFragment_to_flowerFragment"
+            app:destination="@id/flowerFragment" />
+        <action
+            android:id="@+id/action_breathingFragment_to_snakeFragment"
+            app:destination="@id/snakeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/contactFragment"
         android:name="com.example.coriander.ContactFragment"
@@ -63,4 +76,24 @@
         android:name="com.example.coriander.PhysicalFragment"
         android:label="fragment_physical"
         tools:layout="@layout/fragment_physical" />
+    <fragment
+        android:id="@+id/bunnyFragment"
+        android:name="com.example.coriander.BunnyFragment"
+        android:label="fragment_bunny"
+        tools:layout="@layout/fragment_bunny" />
+    <fragment
+        android:id="@+id/candleFragment"
+        android:name="com.example.coriander.CandleFragment"
+        android:label="fragment_candle"
+        tools:layout="@layout/fragment_candle" />
+    <fragment
+        android:id="@+id/flowerFragment"
+        android:name="com.example.coriander.FlowerFragment"
+        android:label="fragment_flower"
+        tools:layout="@layout/fragment_flower" />
+    <fragment
+        android:id="@+id/snakeFragment"
+        android:name="com.example.coriander.SnakeFragment"
+        android:label="fragment_snake"
+        tools:layout="@layout/fragment_snake" />
 </navigation>
