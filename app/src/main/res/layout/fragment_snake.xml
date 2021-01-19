@@ -14,7 +14,7 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="28dp"
-        android:text="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+        android:text="Inhale slowly through the nose and breathe out through the mouth with a long, slow hissing sound."
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
