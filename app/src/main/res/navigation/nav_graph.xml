@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.coriander.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_logEntryFragment"
+            app:destination="@id/logEntryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/hardwareFragment"
         android:name="com.example.coriander.HardwareFragment"
@@ -109,6 +113,20 @@
         android:name="com.example.coriander.SnakeFragment"
         android:label="fragment_snake"
         tools:layout="@layout/fragment_snake" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.coriander.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logEntryFragment"
+        android:name="com.example.coriander.LogEntryFragment"
+        android:label="log_entry_fragment"
+        tools:layout="@layout/log_entry_fragment" />
     <fragment
         android:id="@+id/addContactFragment"
         android:name="com.example.coriander.AddContactFragment"

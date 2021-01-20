@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonLogMood"
         android:layout_width="320dp"
         android:layout_height="57dp"
         android:layout_marginTop="28dp"
