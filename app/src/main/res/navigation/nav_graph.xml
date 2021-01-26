@@ -60,7 +60,14 @@
         android:id="@+id/contactFragment"
         android:name="com.example.coriander.ContactFragment"
         android:label="fragment_contact"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/fragment_contact" >
+        <action
+            android:id="@+id/action_contactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_contactFragment_self"
+            app:destination="@id/contactFragment" />
+    </fragment>
     <fragment
         android:id="@+id/calmingFragment"
         android:name="com.example.coriander.CalmingFragment"
@@ -96,4 +103,9 @@
         android:name="com.example.coriander.SnakeFragment"
         android:label="fragment_snake"
         tools:layout="@layout/fragment_snake" />
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="com.example.coriander.AddContactFragment"
+        android:label="fragment_add_contact"
+        tools:layout="@layout/fragment_add_contact" />
 </navigation>
