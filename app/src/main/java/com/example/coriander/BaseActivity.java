@@ -5,19 +5,34 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telecom.Call;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Calendar;
 
 public class BaseActivity extends AppCompatActivity implements OnViewCreated {
 
@@ -26,12 +41,22 @@ public class BaseActivity extends AppCompatActivity implements OnViewCreated {
     private ContactFragment fragmentA;
     private CallDeleteFragment fragmentB;
     /*/
+    private static Context mContext;
+
+    public static Context getContext(){
+        return mContext;
+    }
+
+    public static void setContext(Context context) {
+        mContext = context;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         loadBaseElements();
+        setContext(this);
 
 
         /*/Intent intent = getIntent();
@@ -91,6 +116,42 @@ public class BaseActivity extends AppCompatActivity implements OnViewCreated {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static void SaveFile(String filename, String fileContents){
+        File file = new File(getContext().getFilesDir(), filename);
+        try {
+            file.createNewFile();
+            FileOutputStream oFile = new FileOutputStream(file, false);
+            oFile.write(fileContents.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String ReadFile(String filename){
+        try {
+            FileInputStream fis = getContext().openFileInput(filename);
+            InputStreamReader inputStreamReader =
+                    new InputStreamReader(fis, StandardCharsets.UTF_8);
+            StringBuilder stringBuilder = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+                String line = reader.readLine();
+                while (line != null) {
+                    stringBuilder.append(line).append('\n');
+                    line = reader.readLine();
+                }
+            } catch (IOException e) {
+                // Error occurred when opening raw file for reading.
+                e.printStackTrace();
+            } finally {
+                String contents = stringBuilder.toString();
+                return contents;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return "No log for this date";
         }
     }
 

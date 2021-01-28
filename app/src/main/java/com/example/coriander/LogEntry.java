@@ -1,10 +1,13 @@
 package com.example.coriander;
 
 public class LogEntry {
-
+    //TODO: Add method for filename creation. Add method for creation and retrieval of file contents
     int mood;
     Boolean panicAttack;
     String userLog;
+    int year;
+    int month;
+    int day;
 
     public LogEntry(){
     }
@@ -25,5 +28,17 @@ public class LogEntry {
 
     public void setUserLog(String userLog){
         this.userLog = userLog;
+    }
+
+    public void setYear(int year){
+        this.year = year;
+    }
+
+    public void setMonth(int month){
+        this.month = month;
+    }
+
+    public void setDay(int day){
+        this.day = day;
     }
 }

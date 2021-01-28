@@ -1,7 +1,10 @@
 package com.example.coriander;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -16,9 +19,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class LogEntryFragment extends Fragment {
 
@@ -33,6 +39,9 @@ public class LogEntryFragment extends Fragment {
     Button btnEnter;
     EditText userLogEdit;
     OnViewCreated createdListener;
+    static int year;
+    static int month;
+    static int day;
 
     public static LogEntryFragment newInstance() {
         return new LogEntryFragment();
@@ -51,6 +60,7 @@ public class LogEntryFragment extends Fragment {
         btnMood5 = (ImageButton) view.findViewById(R.id.imageButtonMood5);
         Button btnNo = (Button) view.findViewById(R.id.buttonLogNo);
         Button btnYes = (Button) view.findViewById(R.id.buttonLogYes);
+        Button btnDate = (Button) view.findViewById(R.id.buttonDatePicker);
         btnEnter = (Button) view.findViewById(R.id.buttonLogEnter);
         userLogEdit = (EditText) view.findViewById(R.id.editTextLogEntry);
         btnNo.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E1E1E1")));
@@ -69,6 +79,13 @@ public class LogEntryFragment extends Fragment {
                 btnYes.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BBBBBB")));
                 btnNo.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E1E1E1")));
                 logEntry.setPanicAttack(true);
+            }
+        });
+        btnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getParentFragmentManager(), "datePicker");
             }
         });
         btnMood1.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +123,10 @@ public class LogEntryFragment extends Fragment {
                 logEntry.setMood(5);
             }
         });
+        final Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
         return view;
     }
 
@@ -124,11 +145,38 @@ public class LogEntryFragment extends Fragment {
                 }
                 else{
                     logEntry.setUserLog(userLogEdit.getText().toString());
+                    logEntry.setYear(year);
+                    logEntry.setMonth(month);
+                    logEntry.setDay(day);
+                    String filename = year + "_" + month + "_" + day + "_log";
+                    StringBuilder str = new StringBuilder();
+                    str.append(logEntry.year + "\n");
+                    str.append(logEntry.month + "\n");
+                    str.append(logEntry.day + "\n");
+                    str.append(logEntry.mood + "\n");
+                    str.append(logEntry.panicAttack.toString() + "\n");
+                    str.append(logEntry.userLog);
+                    //Save File
+                    BaseActivity.SaveFile(filename, str.toString());
                     mViewModel.select(logEntry);
                     Navigation.findNavController(getView()).navigate(R.id.action_global_mainFragment);
                 }
             }
         });
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+        public void onDateSet(DatePicker view, int ryear, int rmonth, int rday) {
+            year = ryear;
+            month = rmonth;
+            day = rday;
+        }
     }
 
 

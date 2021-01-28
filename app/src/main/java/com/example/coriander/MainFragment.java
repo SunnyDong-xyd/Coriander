@@ -47,7 +47,10 @@ public class MainFragment extends Fragment {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                Toast.makeText(getActivity(), logEntry.mood + logEntry.panicAttack.toString() + logEntry.userLog, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), logEntry.mood + logEntry.panicAttack.toString() + logEntry.userLog, Toast.LENGTH_LONG).show();
+                String filename = year + "_" + month + "_" + day + "_log";
+                String contents = BaseActivity.ReadFile(filename);
+                Toast.makeText(getActivity(), contents, Toast.LENGTH_LONG).show();
             }
         });
         return view;
