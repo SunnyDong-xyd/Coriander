@@ -67,6 +67,12 @@
         <action
             android:id="@+id/action_contactFragment_self"
             app:destination="@id/contactFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_addMoreContacts"
+            app:destination="@id/addMoreContacts" />
+        <action
+            android:id="@+id/action_contactFragment_to_callDeleteFragment"
+            app:destination="@id/callDeleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/calmingFragment"
@@ -108,4 +114,22 @@
         android:name="com.example.coriander.AddContactFragment"
         android:label="fragment_add_contact"
         tools:layout="@layout/fragment_add_contact" />
+    <fragment
+        android:id="@+id/addMoreContacts"
+        android:name="com.example.coriander.AddMoreContacts"
+        android:label="fragment_add_more_contacts"
+        tools:layout="@layout/fragment_add_more_contacts" >
+        <action
+            android:id="@+id/action_addMoreContacts_to_contactFragment"
+            app:destination="@id/contactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/callDeleteFragment"
+        android:name="com.example.coriander.CallDeleteFragment"
+        android:label="fragment_call_delete"
+        tools:layout="@layout/fragment_call_delete" >
+        <action
+            android:id="@+id/action_callDeleteFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+    </fragment>
 </navigation>

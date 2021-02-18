@@ -9,8 +9,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
-
+import androidx.lifecycle.LiveData;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +36,19 @@ import android.widget.ListView;
  */
 public class ContactFragment extends Fragment {
 
+    private SVMContacts viewModel;
+
     OnViewCreated createdListener;
     DatabaseHelper myDB;
-    Button btnadd,btnview;
-    EditText editText;
+    Button btnadd;
+    EditText editText, editText2;
+    ArrayList<User> userList;
+    ListView listView;
+    User user;
+    /*/private FragmentAListener listener;
+    public interface FragmentAListener {
+        void onInputSent(String input);
+    }/*/
 
     // TODO: Rename and change types and number of parameters
     public static ContactFragment newInstance(){
@@ -50,56 +64,46 @@ public class ContactFragment extends Fragment {
 
 
 
-        editText = (EditText) view.findViewById(R.id.editText);
-        btnadd = (Button) view.findViewById(R.id.btnAdd);
-        btnview = (Button) view.findViewById(R.id.btnView);
-        myDB = new DatabaseHelper(getActivity());
-        ListView listView = (ListView) view.findViewById(R.id.listview1);
 
-        ArrayList<String> theList = new ArrayList<>();
+        btnadd = (Button) view.findViewById(R.id.buttonaddmore);
+
+        myDB = new DatabaseHelper(getActivity());
+        userList = new ArrayList<>();
         Cursor data = myDB.getListContents();
+
+
+        //listView = (ListView) view.findViewById(R.id.listview1);
+
+
+
+        //ArrayList<String> theList = new ArrayList<>();
         data.moveToFirst();
         if(data.getCount() == 0){
             Toast.makeText(getActivity(), "Contacts list is empty", Toast.LENGTH_LONG).show();
         }else{
             do{
-                theList.add(data.getString(1));
-                ListAdapter listAdapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,theList);
-                listView.setAdapter(listAdapter);
+                user = new User(data.getString(1),data.getString(2),data.getString(0));
+                userList.add(user);
+                ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(getActivity(),R.layout.fragment_add_contact,userList);
+                listView = (ListView) view.findViewById(R.id.listview1);
+                listView.setAdapter(adapter);
+
+               // ListAdapter listAdapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,theList);
+                //listView.setAdapter(listAdapter);
 
 
             }while(data.moveToNext());
         }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Toast.makeText(getActivity(),theList.get(i),Toast.LENGTH_LONG).show();
-            }
-        });
 
-        btnview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"));
-                startActivity(intent);
-            }
-        });
+
+
 
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newEntry = editText.getText().toString();
-                if(editText.length() != 0){
-                    AddData(newEntry);
-                    editText.setText("");
-
-                }else{
-                    Toast.makeText(getActivity(), "Please enter a name into the name field", Toast.LENGTH_LONG).show();
-                }
-                Navigation.findNavController(view).navigate(R.id.action_contactFragment_self);
+                Navigation.findNavController(view).navigate(R.id.action_contactFragment_to_addMoreContacts);
             }
         });
 
@@ -112,16 +116,24 @@ public class ContactFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //mViewModel = new ViewModelProvider(this).get(BreathingViewModel.class);
         // TODO: Use the ViewModel
+
+
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        /*/if(context instanceof FragmentAListener){
+            listener = (FragmentAListener)context;
+        }else{
+            throw new RuntimeException(context.toString() + "must implement interface");
+        }/*/
         createdListener = (OnViewCreated) context;
+
     }
 
-    public void AddData(String newEntry){
-        boolean insertData = myDB.addData(newEntry);
+    public void AddData(String newEntry, String number){
+        boolean insertData = myDB.addData(newEntry,number);
 
         if(insertData == true){
             Toast.makeText(getActivity(), "Contact successfully added", Toast.LENGTH_LONG).show();
@@ -130,4 +142,47 @@ public class ContactFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view,Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(SVMContacts.class);
+
+        if (myDB.CheckDB() == true) {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    //Toast.makeText(getActivity(),userList.get(i).getName(),Toast.LENGTH_LONG).show();
+                    String name = userList.get(i).getName();
+                    String number = userList.get(i).getNumber();
+                    String id = userList.get(i).getID();
+
+
+                /*/
+                Intent editScreenIntent = new Intent(getActivity().getBaseContext(),BaseActivity.class);
+                editScreenIntent.putExtra("name",name);
+                editScreenIntent.putExtra("number",number);/*/
+                    //listener.onInputSent(name);
+
+                /*/
+                Bundle args = new Bundle();
+                args.putString("name",name);
+                args.putString("number",number);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                CallDeleteFragment newFrag = new CallDeleteFragment();
+                newFrag.setArguments(args);
+
+                fragmentTransaction.replace(R.id.fragment,newFrag);
+                fragmentTransaction.commit();
+                newFrag.setArguments(args);
+/*/
+
+                    viewModel.setText(name, number,id);
+
+                    Navigation.findNavController(view).navigate(R.id.action_contactFragment_to_callDeleteFragment);
+                }
+            });
+        }
+    }
 }

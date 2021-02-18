@@ -38,8 +38,8 @@ public class AddContactFragment extends Fragment {
         createdListener.onViewSelected(view);
 
 
-        ListView listView = (ListView) view.findViewById(R.id.ListView);
-        myDB = new DatabaseHelper(getActivity());
+        //ListView listView = (ListView) view.findViewById(R.id.ListView);
+        /*/myDB = new DatabaseHelper(getActivity());
 
 
         ArrayList<String> theList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class AddContactFragment extends Fragment {
                 ListAdapter listAdapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,theList);
                 listView.setAdapter(listAdapter);
             }
-        }
+        }/*/
 
         return view;
     }
