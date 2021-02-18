@@ -5,8 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".AddContactFragment">
 
-    <ListView
-        android:id="@+id/ListView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="133dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:lineSpacingExtra="12sp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
 </FrameLayout>

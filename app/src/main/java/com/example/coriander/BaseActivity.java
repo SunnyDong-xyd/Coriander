@@ -2,12 +2,16 @@ package com.example.coriander;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +22,35 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class BaseActivity extends AppCompatActivity implements OnViewCreated {
 
     private View currentView;
+    /*/
+    private ContactFragment fragmentA;
+    private CallDeleteFragment fragmentB;
+    /*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         loadBaseElements();
+
+
+        /*/Intent intent = getIntent();
+        String Aname = intent.getStringExtra("name");
+        Bundle bundle = new Bundle();
+        bundle.putString("name","From Activity");
+        CallDeleteFragment fragobj = new CallDeleteFragment();
+        fragobj.setArguments(bundle);/*/
+
+        /*/
+        fragmentA = new ContactFragment();
+        fragmentB = new CallDeleteFragment();
+        /*/
+
+       // FragmentManager fragmentManager = getSupportFragmentManager();
+       // FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+       //fragmentTransaction.replace(R.id.fragment,new CallDeleteFragment());
+      //fragmentTransaction.commit();
+
     }
 
     protected void loadBaseElements(){
