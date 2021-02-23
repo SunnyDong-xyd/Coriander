@@ -130,28 +130,29 @@ public class BaseActivity extends AppCompatActivity implements OnViewCreated {
         }
     }
 
-    public static String ReadFile(String filename){
+    public static LogEntry ReadFile(String filename){
+        LogEntry logEntry = new LogEntry();
         try {
             FileInputStream fis = getContext().openFileInput(filename);
             InputStreamReader inputStreamReader =
                     new InputStreamReader(fis, StandardCharsets.UTF_8);
             StringBuilder stringBuilder = new StringBuilder();
             try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-                String line = reader.readLine();
-                while (line != null) {
-                    stringBuilder.append(line).append('\n');
-                    line = reader.readLine();
-                }
+                logEntry.setYear(Integer.parseInt(reader.readLine()));
+                logEntry.setMonth(Integer.parseInt(reader.readLine()));
+                logEntry.setDay(Integer.parseInt(reader.readLine()));
+                logEntry.setMood(Integer.parseInt(reader.readLine()));
+                logEntry.setPanicAttack(Boolean.valueOf(reader.readLine()));
+                logEntry.setUserLog(reader.readLine());
             } catch (IOException e) {
                 // Error occurred when opening raw file for reading.
                 e.printStackTrace();
             } finally {
-                String contents = stringBuilder.toString();
-                return contents;
+                return logEntry;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return "No log for this date";
+            return null;
         }
     }
 

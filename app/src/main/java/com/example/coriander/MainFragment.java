@@ -22,6 +22,7 @@ import java.util.Calendar;
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
+    private LogEntryMainSharedViewModel model;
     private LogEntry logEntry;
     OnViewCreated createdListener;
 
@@ -37,30 +38,34 @@ public class MainFragment extends Fragment {
         createdListener.onViewSelected(view);
 
         Button btn = (Button) view.findViewById(R.id.buttonLogMood);
-        CalendarView calendar = (CalendarView) view.findViewById(R.id.calendarView);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_logEntryFragment);
             }
         });
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        model = new ViewModelProvider(requireActivity()).get(LogEntryMainSharedViewModel.class);
+        CalendarView calendar = (CalendarView) view.findViewById(R.id.calendarView);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 //Toast.makeText(getActivity(), logEntry.mood + logEntry.panicAttack.toString() + logEntry.userLog, Toast.LENGTH_LONG).show();
                 String filename = year + "_" + month + "_" + day + "_log";
-                String contents = BaseActivity.ReadFile(filename);
-                Toast.makeText(getActivity(), contents, Toast.LENGTH_LONG).show();
+                logEntry = BaseActivity.ReadFile(filename);
+                if (logEntry == null){
+                    Toast.makeText(getActivity(), "No log for this date", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    model.select(logEntry);
+                    Navigation.findNavController(getView()).navigate(R.id.action_mainFragment_to_moodLogFragment);
+                }
             }
-        });
-        return view;
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        LogEntryMainSharedViewModel model = new ViewModelProvider(requireActivity()).get(LogEntryMainSharedViewModel.class);
-        model.getSelected().observe(getViewLifecycleOwner(), item -> {
-            logEntry = item;
         });
     }
 

@@ -158,7 +158,6 @@ public class LogEntryFragment extends Fragment {
                     str.append(logEntry.userLog);
                     //Save File
                     BaseActivity.SaveFile(filename, str.toString());
-                    mViewModel.select(logEntry);
                     Navigation.findNavController(getView()).navigate(R.id.action_global_mainFragment);
                 }
             }

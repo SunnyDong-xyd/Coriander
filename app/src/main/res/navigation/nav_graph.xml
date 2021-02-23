@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_logEntryFragment"
             app:destination="@id/logEntryFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_moodLogFragment"
+            app:destination="@id/moodLogFragment" />
     </fragment>
     <fragment
         android:id="@+id/hardwareFragment"
@@ -149,5 +152,14 @@
         <action
             android:id="@+id/action_callDeleteFragment_to_contactFragment"
             app:destination="@id/contactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moodLogFragment"
+        android:name="com.example.coriander.MoodLogFragment"
+        android:label="mood_log_fragment"
+        tools:layout="@layout/mood_log_fragment" >
+        <action
+            android:id="@+id/action_moodLogFragment_to_logEntryFragment"
+            app:destination="@id/logEntryFragment" />
     </fragment>
 </navigation>
