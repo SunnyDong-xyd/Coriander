@@ -15,4 +15,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="Button.White" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/darker_gray</item>
+    </style>
+    <style name="Button.Gray" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@android:color/darker_gray</item>
+    </style>
 </resources>
