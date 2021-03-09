@@ -95,7 +95,23 @@
         android:id="@+id/physicalFragment"
         android:name="com.example.coriander.PhysicalFragment"
         android:label="fragment_physical"
-        tools:layout="@layout/fragment_physical" />
+        tools:layout="@layout/fragment_physical" >
+        <action
+            android:id="@+id/action_physicalFragment_to_situps"
+            app:destination="@id/situps" />
+        <action
+            android:id="@+id/action_physicalFragment_to_jjacks"
+            app:destination="@id/jjacks" />
+        <action
+            android:id="@+id/action_physicalFragment_to_pushups"
+            app:destination="@id/pushups" />
+        <action
+            android:id="@+id/action_physicalFragment_to_crunches"
+            app:destination="@id/crunches" />
+        <action
+            android:id="@+id/action_physicalFragment_to_jog"
+            app:destination="@id/jog" />
+    </fragment>
     <fragment
         android:id="@+id/bunnyFragment"
         android:name="com.example.coriander.BunnyFragment"
@@ -162,4 +178,29 @@
             android:id="@+id/action_moodLogFragment_to_logEntryFragment"
             app:destination="@id/logEntryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/crunches"
+        android:name="com.example.coriander.crunches"
+        android:label="fragment_crunches"
+        tools:layout="@layout/fragment_crunches" />
+    <fragment
+        android:id="@+id/jjacks"
+        android:name="com.example.coriander.jjacks"
+        android:label="fragment_jjacks"
+        tools:layout="@layout/fragment_jjacks" />
+    <fragment
+        android:id="@+id/jog"
+        android:name="com.example.coriander.jog"
+        android:label="fragment_jog"
+        tools:layout="@layout/fragment_jog" />
+    <fragment
+        android:id="@+id/pushups"
+        android:name="com.example.coriander.pushups"
+        android:label="fragment_pushups"
+        tools:layout="@layout/fragment_pushups" />
+    <fragment
+        android:id="@+id/situps"
+        android:name="com.example.coriander.situps"
+        android:label="fragment_situps"
+        tools:layout="@layout/fragment_situps" />
 </navigation>
