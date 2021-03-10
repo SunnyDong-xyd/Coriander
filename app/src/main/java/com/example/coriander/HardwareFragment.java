@@ -34,7 +34,8 @@ import android.widget.Toast;
 
 public class HardwareFragment extends Fragment {
 
-    private HardwareViewModel mViewModel;
+    OnViewCreated createdListener;
+
     // Intent request codes
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
@@ -44,6 +45,7 @@ public class HardwareFragment extends Fragment {
     private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
+    private MenuItem mMenuSettings;
 
     /**
      * Name of the connected device
@@ -69,8 +71,6 @@ public class HardwareFragment extends Fragment {
      * Member object for the chat services
      */
     private BluetoothChatService mChatService = null;
-
-    OnViewCreated createdListener;
 
     public static HardwareFragment newInstance() {
         return new HardwareFragment();
@@ -132,27 +132,24 @@ public class HardwareFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hardware_fragment, container, false);
         createdListener.onViewSelected(view);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mConversationView = view.findViewById(R.id.in);
         mOutEditText = view.findViewById(R.id.edit_text_out);
         mSendButton = view.findViewById(R.id.button_send);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HardwareViewModel.class);
-        // TODO: Use the ViewModel
+        mMenuSettings = view.findViewById(R.id.app_bar_settings);
+        return view;
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         createdListener = (OnViewCreated) context;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        //mConversationView = view.findViewById(R.id.in);
+        //mOutEditText = view.findViewById(R.id.edit_text_out);
+        //mSendButton = view.findViewById(R.id.button_send);
     }
 
     /**
@@ -178,7 +175,7 @@ public class HardwareFragment extends Fragment {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
                 View view = getView();
-                if (null != view) {
+                if (view != null) {
                     TextView textView = view.findViewById(R.id.edit_text_out);
                     String message = textView.getText().toString();
                     sendMessage(message);
@@ -388,12 +385,6 @@ public class HardwareFragment extends Fragment {
                 // Launch the DeviceListActivity to see devices and do scan
                 Intent serverIntent = new Intent(getActivity(), DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
-                return true;
-            }
-            case R.id.insecure_connect_scan: {
-                // Launch the DeviceListActivity to see devices and do scan
-                Intent serverIntent = new Intent(getActivity(), DeviceListActivity.class);
-                startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
                 return true;
             }
             case R.id.discoverable: {
