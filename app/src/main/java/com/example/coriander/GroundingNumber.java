@@ -13,21 +13,21 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link pushups#newInstance} factory method to
+ * Use the {@link GroundingNumber#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class pushups extends Fragment {
+public class GroundingNumber extends Fragment {
 
     OnViewCreated createdListener;
     // TODO: Rename and change types and number of parameters
-    public static pushups newInstance(){
-        return new pushups();
+    public static GroundingNumber newInstance(){
+        return new GroundingNumber();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pushups, container, false);
+        View view = inflater.inflate(R.layout.fragment_grounding_number, container, false);
         createdListener.onViewSelected(view);
         return view;
     }

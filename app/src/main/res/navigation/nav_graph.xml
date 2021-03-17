@@ -90,7 +90,14 @@
         android:id="@+id/groundingFragment"
         android:name="com.example.coriander.GroundingFragment"
         android:label="fragment_grounding"
-        tools:layout="@layout/fragment_grounding" />
+        tools:layout="@layout/fragment_grounding" >
+        <action
+            android:id="@+id/action_groundingFragment_to_groundingObject"
+            app:destination="@id/groundingObject" />
+        <action
+            android:id="@+id/action_groundingFragment_to_groundingNumber"
+            app:destination="@id/groundingNumber" />
+    </fragment>
     <fragment
         android:id="@+id/physicalFragment"
         android:name="com.example.coriander.PhysicalFragment"
@@ -203,4 +210,14 @@
         android:name="com.example.coriander.situps"
         android:label="fragment_situps"
         tools:layout="@layout/fragment_situps" />
+    <fragment
+        android:id="@+id/groundingNumber"
+        android:name="com.example.coriander.GroundingNumber"
+        android:label="fragment_grounding_number"
+        tools:layout="@layout/fragment_grounding_number" />
+    <fragment
+        android:id="@+id/groundingObject"
+        android:name="com.example.coriander.GroundingObject"
+        android:label="fragment_grounding_object"
+        tools:layout="@layout/fragment_grounding_object" />
 </navigation>
