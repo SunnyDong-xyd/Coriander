@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="367dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_width="370dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="80dp"
         android:text="Panic attacks last from 5 to 20 minutes. You will get through this."
         android:textAlignment="center"
         android:textSize="30sp"
@@ -19,17 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="367dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="Panic attacks are not fatal, you will be okay."
-        android:textAlignment="center"
-        android:textSize="30sp"
+    <Button
+        android:id="@+id/factbutton"
+        android:layout_width="366dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="20dp"
+        android:text="Generate New Fact"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29"
-        app:layout_constraintVertical_bias="0.015" />
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
