@@ -21,6 +21,7 @@ public class PanicFragment extends Fragment {
     private PanicViewModel mViewModel;
 
 
+
     OnViewCreated createdListener;
 
     public static PanicFragment newInstance() {
