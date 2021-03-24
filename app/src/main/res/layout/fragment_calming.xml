@@ -14,7 +14,7 @@
         android:layout_marginTop="292dp"
         android:text="Panic attacks last from 5 to 20 minutes. You will get through this."
         android:textAlignment="viewStart"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
